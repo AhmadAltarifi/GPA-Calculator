@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="design/css/bootstrap.min.css">
+
+    <script src="design/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <title>احسب معدلك - جامعة الزيتونة</title>
+
+</head>
+
+<body>
+    <script>
+        if (window.confirm('مرحبًا، لو استفدت من الموقع يا ريت تتابعني انستغرام، اضغط موافق عشان تنتقل على التطبيق ')) {
+            window.location.href = 'https://www.instagram.com/a7madaltarifi';
+        };
+    </script>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Calculate Your Total Grade - ZUJ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <img src="images/zuj.png" class="rounded mx-auto d-block" alt="...">
+    <div class="container">
+        <table class="table" id="degreeTable">
+            <thead class="table-light">
+                <tr>
+
+                    <th scope="col" dir="auto">المادة</th>
+                    <th scope="col" dir="auto">الساعات المعتمدة</th>
+                    <th scope="col" dir="auto">العلامة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td><input type="text" class="form-control" id="floatingInput" placeholder="المادة"></td>
+                    <td>
+
+                        <input type="number" class="form-control" id="my_hour" placeholder="عدد الساعات المعتمدة">
+
+                    </td>
+                    <td><input type="text" class="form-control" class="input-mark" id="my_mark" placeholder="العلامة"></td>
+
+
+                </tr>
+            </tbody>
+            <tr>
+                <td colspan="3">
+                    <label for="float-label"> Semester Total - المعدل الفصلي</label>
+                    <input type="text" class="form-control" name="total" id="total" disabled>
+                </td>
+            </tr>
+            <thead class="table-light">
+                <tr>
+
+                    <th scope="col" dir="auto">المعدل التراكمي السابق</th>
+                    <th scope="col" dir="auto" colspan="3">الساعات المقطوعة سابقًا</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>
+
+                        <input type="number" class="form-control" id="old_gpa" placeholder="المعدل التراكمي السابق">
+
+                    </td>
+                    <td colspan="3"><input type="text" class="form-control" class="input-mark" id="old_hour" placeholder="الساعات المقطوعة سابقًا"></td>
+
+
+                </tr>
+            </tbody>
+            <tr>
+                <td colspan="3">
+                    <label for="float-label"> GPA Total - المعدل التراكمي </label>
+                    <input type="text" class="form-control" name="gpatotal" id="gpatotal" disabled>
+                </td>
+            </tr>
+
+
+        </table>
+
+        <button type="button" class="btn btn-primary" id="addCourse">
+            أضف مادة جديدة
+        </button>
+
+        <button type="button" name="total" class="btn btn-secondary" onclick="getTotal()">
+           إحسب 
+        </button>
+
+
+
+
+    </div>
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="index.html" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <img src="images/zuj.png" alt="" style="width: 45px; height:45px;">
+                </a>
+                <span class="text-muted">2022 <a href="https://www.instagram.com/a7madaltarifi" style="text-decoration: aqua;">Ahmad Al-Tarifi</a>  &copy;</span>
+            </div>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        function getTotal() {
+            // var arr = document.getelementsByName("mark");
+            var arr = document.querySelectorAll("#my_mark");
+            var arr2 = document.querySelectorAll("#my_hour");
+            var total = 0;
+            var gpa = 0;
+            var totalHours = 0;
+            for (var i = 0; i < arr2.length; i++) {
+                totalHours += parseInt(arr2[i].value);
+            }
+            for (var i = 0; i < arr.length; i++) {
+                if (parseFloat(arr[i].value) > 0) {
+                    total += parseFloat(arr[i].value) * parseFloat(arr2[i].value);
+                    gpa = total / totalHours;
+                }
+            }
+
+            var arr3 = document.querySelectorAll("#old_gpa");
+            var arr4 = document.querySelectorAll("#old_hour");
+            var oldtotal = 0;
+            var oldtotal = parseFloat(arr3[0].value) * parseInt(arr4[0].value);
+            var gpatotal = 0;
+            gpatotal = (total + oldtotal) / (totalHours + parseInt(arr4[0].value));
+            document.getElementById("total").value = gpa;
+            document.getElementById("gpatotal").value = gpatotal;
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var n = 1;
+
+            $('#addCourse').click(function() {
+                n++;
+                $('#degreeTable').append('' +
+                    '<tr>' +
+                    '<td>' +
+                    '<input type="text" class="form-control" id="floatingInput" placeholder="المادة">' +
+                    '</td>' +
+                    '<td>' +
+                    '<input type="number" class="form-control" id="my_hour" placeholder="عدد الساعات المعتمدة">' +
+                    '</td>' +
+                    '<td>' +
+                    '<input type="text" class="form-control" class="input-mark" id="my_mark" placeholder="العلامة">' +
+                    '</td>' +
+
+                    '</tr>');
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>
