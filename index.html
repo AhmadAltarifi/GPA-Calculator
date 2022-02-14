@@ -8,15 +8,20 @@
 
     <link rel="stylesheet" href="design/css/bootstrap.min.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@700&display=swap" rel="stylesheet">
+
     <script src="design/js/bootstrap.bundle.min.js"></script>
     <script src="js/app.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>احسب معدلك - جامعة الزيتونة</title>
 
 </head>
 
 <body>
-    <h1>Is the test working?</h1>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Calculate Your Total Grade - ZUJ</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +39,16 @@
     </nav>
     <img src="images/zuj.png" class="rounded mx-auto d-block" alt="...">
     <div class="container">
-        <table class="table" id="degreeTable">
+
+        <div class="alert alert-danger" role="alert" dir="auto" style="text-align: center;">
+            هذا الموقع يعمل مع جميع الجامعات التي تعتمد نظام العلامات وليس حصرًا على جامعة الزيتونة.
+        </div>
+
+        <div class="alert alert-primary" role="alert" dir="auto" style="text-align: center;">
+            الرجاء ادخال الأرقام باللغة الانجليزية فقط.
+        </div>
+
+        <table class="table" id="degreeTable" style="text-align: center;">
             <thead class="table-light">
                 <tr>
 
@@ -56,6 +70,7 @@
 
 
                 </tr>
+
             </tbody>
             <tr>
                 <td colspan="3">
@@ -64,6 +79,14 @@
                 </td>
             </tr>
             <thead class="table-light">
+                <tr>
+                    <th colspan="4">
+                        <div class="alert alert-dark" role="alert" dir="auto" style="text-align: center;">
+                            حساب المعدل التراكمي. <br> (اختياري وليس اجباري)
+                        </div>
+                    </th>
+
+                </tr>
                 <tr>
 
                     <th scope="col" dir="auto">المعدل التراكمي السابق</th>
@@ -92,21 +115,34 @@
 
 
         </table>
+        <div class="col-md-12 text-center">
+            <button type="button" class="btn btn-primary" id="addCourse">
+                أضف مادة جديدة
+            </button>
 
-        <button type="button" class="btn btn-primary" id="addCourse">
-            أضف مادة جديدة
-        </button>
+            <button type="button" name="total" class="btn btn-secondary" onclick="getTotal()">
+               إحسب 
+            </button>
+        </div>
 
-        <button type="button" name="total" class="btn btn-secondary" onclick="getTotal()">
-           إحسب 
-        </button>
 
 
 
 
     </div>
+
     <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="alert alert-warning alert-dismissible fade show my-4 text-center" role="alert" dir="auto">
+            <strong>حسبت معدلك؟</strong> <br> تابعني على الانستغرام لو استفدت. <br>
+            <a href="https://www.instagram.com/a7madaltarifi" style="text-decoration: none;">اضغط هنا للانتقال الى تطبيق الانستغرام.</a> <br>
+            <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>-->
+        </div>
+    </div>
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-5 border-top">
             <div class="col-md-4 d-flex align-items-center">
                 <a href="index.html" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                     <img src="images/zuj.png" alt="" style="width: 45px; height:45px;">

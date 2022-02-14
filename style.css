@@ -1,3 +1,11 @@
 .selector-for-some-widget {
     box-sizing: content-box;
 }
+
+body {
+    font-family: 'Changa', sans-serif;
+}
+
+input {
+    text-align: center;
+}
